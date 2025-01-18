@@ -14,8 +14,8 @@ async function bootstrap() {
   );
 
   app.enableCors({
-    origin: 'http://localhost:3001',
-    // origin: 'https://kaizenbot-dashborad.vercel.app',
+    // origin: 'http://localhost:3001',
+    origin: 'itsapple-front.vercel.app',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
