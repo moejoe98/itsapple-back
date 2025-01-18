@@ -2,8 +2,8 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 
-import fs from 'fs';
-import https from 'https';
+import * as fs from 'fs';
+import * as https from 'https';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
