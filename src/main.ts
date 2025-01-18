@@ -30,12 +30,12 @@ async function bootstrap() {
     credentials: true,
   });
 
-  // Create HTTPS server
+  // Start HTTPS server
   const server = https.createServer(
     httpsOptions,
     app.getHttpAdapter().getInstance(),
   );
-
+  await app.init(); // Ensure routes are initialized
   server.listen(3000, () => {
     console.log('Server running on https://localhost:3000');
   });
