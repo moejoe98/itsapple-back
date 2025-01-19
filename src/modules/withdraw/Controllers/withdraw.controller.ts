@@ -1,14 +1,26 @@
-import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpException,
+  HttpStatus,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { WithdrawService } from '../services/withdraw.service';
 import { AdminRole } from 'src/@types/Settings';
 import { AuthGuard } from 'src/modules/auth/auth.guard';
 import { Roles } from 'src/modules/auth/Constants/roles.decorator';
 import { CreateWithdrawDto } from '../Dto/createWithdraw.dto';
+import { OtpService } from 'src/modules/otp/services/otp.service';
 
 // @UseInterceptors(ResponseInterceptor)
 @Controller('dashboard')
 export class WithdrawController {
-  constructor(private withdrawService: WithdrawService) {}
+  constructor(
+    private withdrawService: WithdrawService,
+    private otpService: OtpService,
+  ) {}
 
   @UseGuards(AuthGuard)
   @Roles(AdminRole.ADMIN)
@@ -28,6 +40,14 @@ export class WithdrawController {
   @Roles(AdminRole.ADMIN)
   @Post('/withdraw')
   async withdrawToken(@Body() createWithdrawDto: CreateWithdrawDto) {
+    const isOtpValid = await this.otpService.verifyOtp(createWithdrawDto.otp);
+    if (!isOtpValid) {
+      throw new HttpException(
+        { message: 'Invalid or expired OTP' },
+        HttpStatus.UNAUTHORIZED,
+      );
+    }
+
     return await this.withdrawService.withdrawToken(
       createWithdrawDto.clientPhone,
       createWithdrawDto.direction,

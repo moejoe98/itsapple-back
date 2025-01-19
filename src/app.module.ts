@@ -8,6 +8,7 @@ import ormconfig from './config/orm.config';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { ResponseInterceptor } from './common/interceptors/response.interceptor';
 import { AuthModule } from './modules/auth/auth.module';
+import { OtpModule } from './modules/otp/otp.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { AuthModule } from './modules/auth/auth.module';
     WithdrawModule,
     AdminsModule,
     AuthModule,
+    OtpModule,
   ],
   controllers: [AppController],
   providers: [

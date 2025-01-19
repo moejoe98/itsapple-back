@@ -9,36 +9,12 @@ import {
 } from 'typeorm';
 
 @Entity()
-export default class Withdraw {
+export default class Otp {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ length: 25 })
-  clientPhone: string;
-
-  @Column({ length: 25 })
-  direction: string;
-
-  @Column('text')
-  clientWallet: string;
-
-  @Column('float')
-  usdtAmount: number;
-
-  @Column('float')
-  profit: number;
-
-  @Column('float')
-  chainFee: number;
-
-  @Column('float', { default: 0 })
-  receivedAmount: number; //buy
-
-  @Column('float', { default: 0 })
-  givenAmount: number; // sell
-
-  @Column({ length: 25 })
-  chain: string;
+  @Column({ length: 12 })
+  otp: string;
 
   @CreateDateColumn({
     type: 'timestamp',

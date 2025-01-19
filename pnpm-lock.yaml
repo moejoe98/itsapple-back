@@ -38,6 +38,9 @@ dependencies:
   mysql:
     specifier: ^2.18.1
     version: 2.18.1
+  nodemailer:
+    specifier: ^6.9.16
+    version: 6.9.16
   reflect-metadata:
     specifier: ^0.1.13
     version: 0.1.14
@@ -4270,6 +4273,11 @@ packages:
       cron-parser: 2.18.0
       long-timeout: 0.1.1
       sorted-array-functions: 1.3.0
+    dev: false
+
+  /nodemailer@6.9.16:
+    resolution: {integrity: sha512-psAuZdTIRN08HKVd/E8ObdV6NO7NTBY3KsC30F7M4H1OnmLCUNaS56FpYxyb26zWLSyYF9Ozch9KYHhHegsiOQ==}
+    engines: {node: '>=6.0.0'}
     dev: false
 
   /normalize-path@3.0.0:

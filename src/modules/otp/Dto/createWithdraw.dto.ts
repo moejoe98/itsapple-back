@@ -27,7 +27,4 @@ export class CreateWithdrawDto {
 
   @IsString()
   clientWallet: string;
-
-  @IsString()
-  otp: string;
 }
